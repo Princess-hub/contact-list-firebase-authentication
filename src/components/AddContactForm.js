@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {addContact} from '../actions/usersActions';
+import {addContact} from '../actions/contactsActions';
 import { Form, Button } from 'react-bootstrap';
 
 class AddContactForm extends Component {

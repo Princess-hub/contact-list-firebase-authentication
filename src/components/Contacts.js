@@ -1,27 +1,34 @@
 import React from 'react';
+import {compose} from 'redux';
 import { Container, Row } from 'react-bootstrap';
 import {connect} from 'react-redux';
 import Contact from './Contact';
+import { firestoreConnect } from 'react-redux-firebase';
 
 const Contacts = (props) => {
-    return (
+    let displayInfo;
+    if (props.requesting) {
+        displayInfo = <p>Loading...</p>
+    } else if (props.requested && props.contacts.length === 0) {
+        displayInfo = <p>No contacts found</p>
+    } else if (props.requested && props.contacts.length > 0) {
+        displayInfo = props.contacts.map((contact) => {
+            return(
+                <Contact contactInfo={contact} key={contact.id} editContact={props.editContact} />
+            );
+        })
+    }
+    return(
         <Container>
             <Row>
-                {
-                    props.contactsData.map((contact) => {
-                        return <Contact contactInfo={contact} key={contact.id} 
-                        deleteContact={props.deleteContact} 
-                        editContact={props.editContact} />
-                    })
-                }
-
+                {displayInfo}
             </Row>
         </Container>
     );
-}
+};
 
 const mapStateToProps =(state) => ({
-    contactsData: state.userState.contacts
+    contactsData: state.contactsState.contacts,
+    contacts:state.firestore.ordered.contacts
 })
-
-export default connect(mapStateToProps)(Contacts);
+export default compose(connect(mapStateToProps), firestoreConnect(["contacts"]))(Contacts);
