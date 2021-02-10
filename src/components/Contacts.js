@@ -29,6 +29,8 @@ const Contacts = (props) => {
 
 const mapStateToProps =(state) => ({
     contactsData: state.contactsState.contacts,
-    contacts:state.firestore.ordered.contacts
+    contacts:state.firestore.ordered.contact,
+    requesting: state.firestore.status.requesting.contact,
+    requested:state.firestore.status.requested.contact,
 })
-export default compose(connect(mapStateToProps), firestoreConnect(["contacts"]))(Contacts);
+export default compose(connect(mapStateToProps), firestoreConnect(["contact"]))(Contacts);

@@ -20,7 +20,7 @@ export const deleteContact = (contactId) => {
     console.log("action-fired", contactId)
     return (dispatch, getState, {getFirestore}) => {
             const firestore = getFirestore();
-            firestore.collection("contacts").doc(contactId).delete()
+            firestore.collection("contact").doc(contactId).delete()
             .then(res => {console.log("contact deleted sucessfull")})
             .catch(err => {console.log ("contact could not be deleted")})
         }
@@ -30,7 +30,7 @@ export const deleteContact = (contactId) => {
 export const editContact = (updatedContact) => {
     return (dispatch, getState, {getFirestore}) => {
         const firestore = getFirestore();
-        firestore.collection("contacts").doc(updatedContact.id).set(updatedContact)
+        firestore.collection("contact").doc(updatedContact.id).set(updatedContact)
         .then(res => {console.log ("contact updated sucessfull")})
         .catch(err => {console.log ("contact could not be updated")})
     }
