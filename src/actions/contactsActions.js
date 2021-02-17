@@ -1,5 +1,3 @@
-import { getFirestore } from "redux-firestore";
-
 export const addContact = (newContact) => {
     return(dispatch, getState, {getFirestore, getFirebase}) => {
         const firestore = getFirestore();

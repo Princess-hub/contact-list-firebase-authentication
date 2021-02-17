@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Form, Button } from 'react-bootstrap';
 import {connect} from 'react-redux';
-import { signup } from '../actions/authActions';
+import  {signup}  from "../actions/authActions";
 
 class Signup extends Component {
     constructor(props) {
@@ -19,8 +19,8 @@ handleChange = (e) => {
 };
 handleSubmit = (e) => {
     e.preventDefault();
-    this.props.signup(this.state);
-    this.setState = ({
+    this.props.Signup(this.state);
+    this.setState({
          username: "",
         email: "",
         password: "",
@@ -56,7 +56,7 @@ handleSubmit = (e) => {
     }
 }
 const mapDispatchToProps = { 
-     signup: Signup
+     Signup: signup
 
 }
 

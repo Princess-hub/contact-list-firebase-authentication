@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import Contacts from './components/Contacts';
 import AddContactForm from './components/AddContactForm';
+import {connect} from 'react-redux';
+import {logout} from '../src/actions/authActions';
 
 class App extends Component {
   render() {
@@ -17,6 +19,9 @@ class App extends Component {
             </Col>
             <Col>
             <h3>All Contacts</h3>
+            <br />
+            <button onClick = {() => this.props.logout()}>logout</button>
+            <br />
               <Contacts  
               // contactsData={this.state.contacts}
                deleteContact={this.deleteContact} 
@@ -28,6 +33,9 @@ class App extends Component {
     );
   }
 }
+const mapDispatchToProps = {
+  logout: logout
+}
 
-export default App;
+export default connect(null, mapDispatchToProps)(App);
 

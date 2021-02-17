@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, NavLink } from 'react-router-dom';
 import App from './App';
+import PrivateRoute from './PrivateRoute';
 import Login from './components/Login';
 import Signup from './components/Signup';
 
@@ -13,7 +14,7 @@ const Router = () => {
                 <NavLink to="/Login">Login</NavLink>
             </div>
 
-            <Route exact path="/" component={App} />
+            <PrivateRoute exact path="/" component={App} />
             <Route path="/Signup" component={Signup} />
             <Route path="/Login" component={Login} />
         </BrowserRouter>
